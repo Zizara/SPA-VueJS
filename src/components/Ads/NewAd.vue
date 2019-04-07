@@ -2,46 +2,57 @@
   <v-container>
     <v-layout row>
       <v-flex xs12 sm6 offset-sm3>
-        <h1 class="text--secondary mb-3">create new ad</h1>
-        <v-form v-model="valid" ref="form" validation mb-3>
+        <h1 class="text--secondary mb-3">Create new ad</h1>
+        <v-form v-model="valid" ref="form" validation class="mb-3">
           <v-text-field
             name="title"
-            label="ad title"
+            label="Ad title"
             type="text"
             v-model="title"
             required
-            :rules="[v => !!v || 'title is required']"
+            :rules="[v => !!v || 'Title is required']"
           ></v-text-field>
-          <v-textarea
+          <v-text-field
             name="description"
             label="Ad description"
             type="text"
             v-model="description"
-            :rules="[v => !!v || 'description is required']"
-          ></v-textarea>
+            multi-line
+            :rules="[v => !!v || 'Description is required']"
+          ></v-text-field>
         </v-form>
-        <v-layout row mb-3>
+        <v-layout row class="mb-3">
           <v-flex xs12>
             <v-btn class="warning">
-              загрузить
+              Upload
               <v-icon right dark>cloud_upload</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex xs12>
-            <img src="https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg" alt height="100">
+            <img src="" height="100">
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex xs12>
-            <v-switch label="add to promo" v-model="promo"></v-switch>
+            <v-switch
+              label="Add to promo?"
+              v-model="promo"
+              color="primary"
+            ></v-switch>
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex xs12>
             <v-spacer></v-spacer>
-            <v-btn :disabled="!valid" class="succes" @click="createAd">Create ad</v-btn>
+            <v-btn
+              :disabled="!valid"
+              class="success"
+              @click="createAd"
+            >
+              Create ad
+            </v-btn>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -62,17 +73,16 @@ export default {
   methods: {
     createAd () {
       if (this.$refs.form.validate()) {
+        // logic
         const ad = {
           title: this.title,
           description: this.description,
           promo: this.promo
         }
+
         console.log(ad)
       }
     }
   }
 }
 </script>
-
-<style>
-</style>
